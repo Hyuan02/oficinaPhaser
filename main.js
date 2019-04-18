@@ -40,6 +40,7 @@ function create() {
     game.physics.enable(player);
 
     player.body.allowGravity = false;
+    player.body.collideWorldBounds = true;
 
     somBala = game.add.audio('bulletSound');
     somBalaEnemy = game.add.audio('bulletSoundEnemy');
