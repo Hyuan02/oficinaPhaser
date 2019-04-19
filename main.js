@@ -2,6 +2,8 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'renderPhaser', { preload: preload, create: create, update:update});
 var player,bala,enemy, balaEnemy;
 var somBala, somBalaEnemy, musica;
+var hudScore;
+var playerScore;
 // var contador;
 function preload() {
 
@@ -30,7 +32,8 @@ function create() {
     }
 
     player = game.add.sprite(400,500,'player');
-    
+    hudScore = game.add.text(50,50);
+    playerScore = 0;
     
     enemy = game.add.group();
     
@@ -56,6 +59,7 @@ function create() {
 function update(){
     controles();
     checaCollisao();
+    atualizaScore();
 }
 
 function controles(){
@@ -141,6 +145,7 @@ function mataInimigo(weapon, enemy){
     weapon.kill();
     console.log(enemy);
     enemy.destroy();
+    playerScore += 5;
 }
 
 function mataPlayer(weapon, player){
@@ -157,8 +162,14 @@ function atirarInimigo(){
     }
 }
 
+function atualizaScore() {
+    hudScore.setText("Score: "+playerScore);
+}
 
 function restart(){
     enemy.removeAll(true);
+    playerScore = 0;
+    player.body.x = 400;
+    player.body.y = 500;
     player.revive();
 }
