@@ -25,9 +25,8 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     for(let posY=0; posY<3; posY++){
         for(let posX=0; posX<4; posX++){
-        let imagem = game.add.image(256*posX,256*posY, "bg");
-        imagem.flipX = game.rnd.integerInRange(-2,1);
-        imagem.flipY = game.rnd.integerInRange(-2,1);
+        game.add.image(256*posX,256*posY, "bg");
+        
         }
     }
 
@@ -141,9 +140,8 @@ function checaCollisao(){
     game.physics.arcade.overlap(balaEnemy.bullets,player,mataPlayer,null,this);
 }
 
-function mataInimigo(weapon, enemy){
-    weapon.kill();
-    console.log(enemy);
+function mataInimigo(projetil, enemy){
+    projetil.kill();
     enemy.destroy();
     playerScore += 5;
 }
